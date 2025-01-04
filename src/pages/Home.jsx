@@ -10,6 +10,8 @@ import Feedback from "../components/feedback";
 import Footer from "../components/footer";
 import Plans from "../components/plans";
 import observeClass, { animatedClasses } from "../aos";
+import fetchData from "../fetchData";
+import { developmentApiEntryPoint } from "./register";
 
 const Container = styled.div`
   width: 100vw;
@@ -104,6 +106,11 @@ const Home = () => {
     animatedClasses.forEach((className) => {
       observeClass(className);
     });
+    fetchData(`
+      ${developmentApiEntryPoint}`,
+      ()=>{},
+      ()=>{}
+    )
   }, []);
   const completeText =
     "Your well-being is our priority. Start your journey with us today.";

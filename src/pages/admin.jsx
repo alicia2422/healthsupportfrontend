@@ -1,5 +1,5 @@
 // AdminPage.js
-import React, { useEffect} from "react";
+import React, { useEffect,useState} from "react";
 import Footer from "../components/footer";
 import {
   Container,
@@ -30,6 +30,9 @@ import { selectAppStats, setAppStats } from "../state/slices/appSlice";
 const AdminPage = () => {
   const dispatch= useDispatch()
   const  appStats= useSelector(selectAppStats)
+  const [temporaryAppStats, setTemporaryStats]=useState({allUsers:[],allInvestments:[],allWithdrawals:[],})
+  const [hasFetched,setHasFetched]= useState(false)
+
   
   console.log({appStats})
   useEffect(()=>{
@@ -37,6 +40,8 @@ const AdminPage = () => {
       `${developmentApiEntryPoint}/admin/getstats`,
       (data)=>{
         dispatch(setAppStats(data.result))
+        setTemporaryStats(data.result)
+        setHasFetched(true)
       },
       (message)=>{
         alert("an error occured")
@@ -44,10 +49,12 @@ const AdminPage = () => {
       }
     )
   },[])
+  const {allUsers,allInvestments,allWithdrawals}=temporaryAppStats
+const pendingRequests=[...allInvestments.filter(x=>x.status==="pending"),...allWithdrawals.filter(x=>x.status==="pending")]
   const stats = [
-    { title: "Total Users", value:"fetching" },
-    { title: "Total Investments", value: "fetching" },
-    { title: "Pending Requests", value:"Fetching..." },
+    { title: "Total Users", value:hasFetched? allUsers.length:"Fetching" },
+    { title: "Total Investments", value:hasFetched?allInvestments.length:"Fetching" },
+    { title: "Pending Requests", value:hasFetched?pendingRequests.length:"Fetching" },
   ];
 
   return (

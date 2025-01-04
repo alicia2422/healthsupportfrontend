@@ -10,6 +10,14 @@ import { useSelector } from "react-redux";
 import fetchData from "../fetchData";
 import { useNavigate } from "react-router-dom";
 import ButtonSpinner from "../components/buttonspinner";
+import { developmentApiEntryPoint } from "./register";
+import { CiTrash,CiMail } from "react-icons/ci";
+import { IoPersonRemove, IoPersonAdd } from "react-icons/io5";
+import styled from "styled-components";
+const StyledButton=styled(Button)`
+margin-left:4px;
+`
+
 
 const AllUsers = () => {
   const appStats=useSelector(selectAppStats)
@@ -25,7 +33,7 @@ const AllUsers = () => {
       if(proceed){
         setLoading(true)
         fetchData(
-          `http://localhost:8080/users/promoteUser/${id}`,
+          `${developmentApiEntryPoint}/users/promoteUser/${id}`,
           (data)=>{
             alert("successful")
             navigate("/")
@@ -51,7 +59,7 @@ const AllUsers = () => {
       if(proceed){
         setLoading(true)
         fetchData(
-          `http://localhost:8080/users/demoteUser/${id}`,
+          `${developmentApiEntryPoint}/users/demoteUser/${id}`,
           (data)=>{
             alert("successful")
             navigate("/")
@@ -65,6 +73,26 @@ const AllUsers = () => {
           )
       }
       
+    }
+  }
+
+
+  const deleteUser=(id,name)=>{
+    const canProceed= window.confirm(`Are you sure you want to  permanently delete  ${name} as a user` )
+    if(canProceed){
+      fetchData(
+        `${developmentApiEntryPoint}/users/delete/${id}`,
+        (data)=>{
+          alert("Successful")
+          navigate("/")
+        },
+        (message)=>{
+            alert(message)
+            navigate("/")
+        },"POST",
+        {},
+        localStorage.getItem("support_token")
+      )
     }
   }
 
@@ -187,8 +215,10 @@ const AllUsers = () => {
                   <td>{user.isAdmin?"Admin":"client"}</td>
                   <td>Active</td>
                   <td>
-                  <Button variant="outline-success" disabled={loading} onClick={()=>{promoteUser(user._id ,user.name,user.isAdmin)}} size="sm">Promote{loading&&<ButtonSpinner/>}</Button>
-                  <Button variant="outline-danger" onClick={()=>{demoteUser(user._id ,user.name,user.isAdmin)}} disabled={loading} size="sm">Demote {loading&&<ButtonSpinner/>}</Button>
+                  <StyledButton variant="outline-success" disabled={loading} onClick={()=>{promoteUser(user._id ,user.name,user.isAdmin)}} size="sm"><IoPersonAdd/>{loading&&<ButtonSpinner/>}</StyledButton>
+                  <StyledButton variant="outline-secondary" onClick={()=>{demoteUser(user._id ,user.name,user.isAdmin)}} disabled={loading} ><IoPersonRemove/> {loading&&<ButtonSpinner/>}</StyledButton>
+                  <StyledButton href={`/admin/sendmessage?id=${user._id}`} variant="outline-info" ><CiMail/></StyledButton>
+                  <StyledButton onClick={()=>{deleteUser(user._id,user.name)}} variant="outline-danger" ><CiTrash/>{loading&&<ButtonSpinner/>}</StyledButton>
 
                   </td>
                 </tr>

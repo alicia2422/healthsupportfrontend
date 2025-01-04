@@ -6,6 +6,7 @@ import { RiMenu4Line } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
 import {developmentApiEntryPoint} from "./register" ;
 import ButtonSpinner from "../components/buttonspinner.jsx";
+import fetchData from "../fetchData.js";
 const Nav = styled.div`
   display: flex;
   align-items: center;
@@ -134,33 +135,29 @@ const logVals = (email, password, fn,nav, setLoading) => {
   fn("Loading ...");
   setLoading(true)
   try {
-    fetch(`${developmentApiEntryPoint}/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    fetchData(
+      `${developmentApiEntryPoint}/users/login`,
+      (data)=>{
+      
+        localStorage.setItem("support_token",data.result.token)
+        nav("/")
       },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if(data.success){
-          localStorage.setItem("support_token",data.result.token)
-          alert("you've logged in succesfully")
-          nav("/")
+      (message)=>{
+        alert(message)
+        nav("/")
+      },
+      "POST",
+      {email,password}
+    )
 
-        }else{
-          alert("We are sorry, we couldn't log you in check if details are correct")
-          nav("/login")
-        }
-        
-      });
-  } catch (error) {
-    console.log(error);
-    alert("an error occured")
-    nav("/login")
+
+    }
+    catch(err){
+      alert(err.message)
+    }
   }
-};
+
+
 
 const CreditBottom = styled.div`
   background-color: rgb(0, 0, 0, 0.1);

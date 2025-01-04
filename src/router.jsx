@@ -21,6 +21,8 @@ import CashContribution from "./pages/cashcontribution";
 import CoinSelectionPage from "./pages/setCoins";
 import ForgotPasswordPage from "./pages/forgotpassword";
 import ResetPasswordPage from "./pages/resetpassword";
+import SendMessagePage from "./pages/sendMessage";
+
 
 const RoutingComponent = () => {
   return (
@@ -41,6 +43,7 @@ const RoutingComponent = () => {
         <Route path="/admin/approveddeposits" element={<ApprovedDeposits />} />
         <Route path="/admin/pendingdeposits" element={<PendingDeposits />} />
         <Route path="/admin/setcoins" element={<CoinSelectionPage />} />
+        <Route path="/admin/sendmessage" element={<SendMessagePage />} />
         <Route
           path="/admin/pendingwithdrawals"
           element={<PendingWithdrawals />}
