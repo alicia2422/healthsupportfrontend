@@ -154,6 +154,7 @@ const Footer = () => {
               medicalhealthassets@gmail.com
             </a>
             <p>+1 (299) 946-0904</p>
+            <div id="google_translate_element"></div>
 
  
           </Col>

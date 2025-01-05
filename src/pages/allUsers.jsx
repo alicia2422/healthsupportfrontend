@@ -23,6 +23,26 @@ const AllUsers = () => {
   const appStats=useSelector(selectAppStats)
   const [loading, setLoading]= useState(false)
   const navigate= useNavigate()
+  const approveUser=(name,id)=>{
+    const canProceed=window.confirm(`Are you  sure you want to approve user: ${name} `)
+    if(canProceed){
+      fetchData(
+        `${developmentApiEntryPoint}/users/approve/${id}`,
+        (data)=>{
+          alert("Approved successfully ✔")
+          navigate("/admin")
+        },
+        (message)=>{
+          alert(message)
+          navigate("/admin")
+        },
+        "POST",
+        {},
+        localStorage.getItem("support_token")
+      )
+      
+    }
+  }
 
   const promoteUser=(id,name,isAdmin)=>{
     if(isAdmin){
@@ -207,14 +227,16 @@ const AllUsers = () => {
             </thead>
             <tbody>
               {allUsers.map(user=>{
+                const userIsApproved= user.status==="approved"
                 return(
                   <tr>
                   <td>{user.idImg?<Image width={30} style={{objectFit:"cover", borderRadius:"50%"}} height={30} src={user.idImg}/>:"unavailable"}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.isAdmin?"Admin":"client"}</td>
-                  <td>Active</td>
+                  <td style={{textTransform:"capitalize"}} className={userIsApproved?"text-success":"text-danger"}>{user.status}</td>
                   <td>
+                    {!userIsApproved&&<StyledButton onClick={()=>{approveUser(user.name,user._id)}}>✔</StyledButton>}
                   <StyledButton variant="outline-success" disabled={loading} onClick={()=>{promoteUser(user._id ,user.name,user.isAdmin)}} size="sm"><IoPersonAdd/>{loading&&<ButtonSpinner/>}</StyledButton>
                   <StyledButton variant="outline-secondary" onClick={()=>{demoteUser(user._id ,user.name,user.isAdmin)}} disabled={loading} ><IoPersonRemove/> {loading&&<ButtonSpinner/>}</StyledButton>
                   <StyledButton href={`/admin/sendmessage?id=${user._id}`} variant="outline-info" ><CiMail/></StyledButton>

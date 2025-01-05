@@ -65,7 +65,15 @@ const App = () => {
 
   useEffect(() => {
     if (dataFetched && assetsLoaded) {
-      navigate(userIsLogged ? (userDetails.isAdmin?"/admin":"/dashboard") : "/home");
+      if(userDetails.status!=="approved"){
+        alert("Your account awaits approval")
+        navigate("/home")
+
+      }
+      else{
+
+        navigate((userIsLogged) ? (userDetails.isAdmin?"/admin":"/dashboard") : "/home");
+      }
     }
   }, [dataFetched, assetsLoaded, userIsLogged, navigate]);
 

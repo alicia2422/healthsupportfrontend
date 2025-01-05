@@ -48,7 +48,7 @@ const HealthBenefitsPage = () => {
         <Subtitle>
           Your health is your wealth. Discover amazing benefits.
         </Subtitle>
-        <Button variant="success">Get started</Button>
+        <Button href="/register" variant="success">Get started</Button>
       </HeroSection>
 
       <Container className="my-5">

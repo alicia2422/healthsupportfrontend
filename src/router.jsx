@@ -22,6 +22,7 @@ import CoinSelectionPage from "./pages/setCoins";
 import ForgotPasswordPage from "./pages/forgotpassword";
 import ResetPasswordPage from "./pages/resetpassword";
 import SendMessagePage from "./pages/sendMessage";
+import HealthInsurancePage from "./pages/healthinsurance";
 
 
 const RoutingComponent = () => {
@@ -36,6 +37,7 @@ const RoutingComponent = () => {
         <Route path="/invest" element={<Invest />} />
         <Route path="/withdraw" element={<Withdraw />} />
         <Route path="/addwallet" element={<AddWallet />} />
+        <Route path="/healthinsurance" element={<HealthInsurancePage />} />
         <Route path="/forgotpassword" element={<ForgotPasswordPage />} />
         <Route path="/resetpassword/:id" element={<ResetPasswordPage />} />
         <Route path="/admin" element={<Admin />} />

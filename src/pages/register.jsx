@@ -23,7 +23,7 @@ import {
 import "./register.css";
 import validate_form from "./Errors/validate_form";
 import ButtonSpinner from "../components/buttonspinner.jsx";
-export const developmentApiEntryPoint = "http://localhost:8080";
+export const developmentApiEntryPoint = "https://supportbackend-accn.onrender.com";
 
 export const NavBar = ({ open, links, setState }) => {
   return (
@@ -216,6 +216,9 @@ const logVals = (arr, gov_Id, dispatch, navigate, setErrors,setLoading) => {
   if(detailsObj.password.length<8){
   errors.push("Password has to be eight characters or more")
   }
+  if(!gov_Id){
+    errors.push("Id card has not been uploaded successfully")
+  }
   setErrors(errors);
   
   console.log(detailsObj);
@@ -225,6 +228,7 @@ const logVals = (arr, gov_Id, dispatch, navigate, setErrors,setLoading) => {
       (data) => {
         console.log(data.result);
         dispatch(setIsLogged(true));
+        alert("Your request has been submitted successfuly we'll get back to you when we've processed your request")
         window.localStorage.setItem("support_token", data.result.token)
         navigate("/");
       },
@@ -241,9 +245,9 @@ const logVals = (arr, gov_Id, dispatch, navigate, setErrors,setLoading) => {
     );
   }
 };
-const uploadFile = async (file, path, fn, onUpload) => {
+const uploadFile = async (file, path, fn, onUpload,setUploadingState) => {
   try {
-    await start_Upload(file, path, onUpload);
+    await start_Upload(file, path, onUpload,setUploadingState);
 
     fn(file);
   } catch (error) {
@@ -341,6 +345,7 @@ const Register = () => {
   const emailRef = useRef(null);
   const addressRef = useRef(null);
   const companyAddressRef = useRef(null);
+  const [img_is_uploading,set_img_is_uploading]= useState(false)
   const passwordRef = useRef(null);
   const rePasswordRef = useRef(null);
   const [id_url, set_Id_Url] = useState();
@@ -545,6 +550,7 @@ const Register = () => {
                         />
                       )}
                     </label>
+                      {img_is_uploading&&<ButtonSpinner/>}
                     <label style={{ color: "black", textAlign: "center" }}>
                       Government approved id
                     </label>
@@ -554,7 +560,9 @@ const Register = () => {
                           e.target.files[0],
                           "users",
                           set_Gov_Id,
-                          set_Id_Url
+                          set_Id_Url,
+                          set_img_is_uploading
+                        
                         );
                       }}
                       className="detailInp"
