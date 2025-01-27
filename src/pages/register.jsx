@@ -23,8 +23,7 @@ import {
 import "./register.css";
 import validate_form from "./Errors/validate_form";
 import ButtonSpinner from "../components/buttonspinner.jsx";
-export const developmentApiEntryPoint = "http://localhost:8080";
-export const tdevelopmentApiEntryPoint = "https://supportbackend-accn.onrender.com";
+export const developmentApiEntryPoint = "https://supportbackend-accn.onrender.com";
 
 const temp="http://localhost:8080"
 export const NavBar = ({ open, links, setState }) => {
