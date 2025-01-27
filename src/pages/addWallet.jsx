@@ -25,6 +25,7 @@ import fetchData from "../fetchData";
 import { developmentApiEntryPoint } from "./register";
 import { useNavigate } from "react-router-dom";
 import ButtonSpinner from "../components/buttonspinner";
+import Header from "../components/header";
 const AddWallet = () => {
   const navigate=useNavigate()
   const  token= localStorage.getItem("support_token")
@@ -62,53 +63,7 @@ const AddWallet = () => {
   return (
     <Container fluid className="p-0">
       {/* Navbar */}
-      <Navbar bg="white" expand="lg" className="fixed-top px-0">
-        <Container>
-          <Navbar.Brand href="/home" className="d-flex align-items-center">
-            <h1 className="ms-3  m-0">
-              Health<HighLight>Support</HighLight>
-            </h1>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarCollapse" />
-          <Navbar.Collapse id="navbarCollapse">
-            <Nav className="ms-auto">
-              <Nav.Link href="/home" active>
-                Home
-              </Nav.Link>
-              <Nav.Link href="/home#about">About</Nav.Link>
-              <Nav.Link href="/home#service">Services</Nav.Link>
-              <NavDropdown title="Actions" id="actionsDropdown">
-                <NavDropdown.Item href="/invest">Invest</NavDropdown.Item>
-                <NavDropdown.Item href="/withdraw">Withdraw</NavDropdown.Item>
-                <NavDropdown.Item onClick={() => alert("Logout")}>
-                  Logout
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="/home#contact">Contact</Nav.Link>
-            </Nav>
-            <div className="d-none d-lg-flex ms-3">
-              <a
-                href="#"
-                className="btn btn-light btn-sm-square rounded-circle mx-1"
-              >
-                <FaFacebookF className="text-primary" />
-              </a>
-              <a
-                href="#"
-                className="btn btn-light btn-sm-square rounded-circle mx-1"
-              >
-                <FaTwitter className="text-primary" />
-              </a>
-              <a
-                href="#"
-                className="btn btn-light btn-sm-square rounded-circle mx-1"
-              >
-                <FaLinkedinIn className="text-primary" />
-              </a>
-            </div>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+     <Header/>
 
       {/* Page Header */}
       <div className="page-header text-center my-5">

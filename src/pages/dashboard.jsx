@@ -16,12 +16,12 @@ import {
   Button,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { HighLight } from "./login";
+
 import "./styles.css";
 import responsive from "../responsive";
 import fetchData from "../fetchData";
 import { developmentApiEntryPoint } from "./register";
-import { use } from "react";
+import Header from "../components/header";
 export const logOut=(nav)=>{
 window.localStorage.removeItem("support_token");
 nav("/")
@@ -65,58 +65,7 @@ const Dashboard = () => {
   return (
     <Container fluid>
       {/* Navbar Start */}
-      <Navbar expand="lg" bg="light" fixed="top" className="px-0">
-        <Container>
-          <Navbar.Brand href="/" className="d-flex align-items-center">
-            <h2 className="display-5  m-0">
-              Health<HighLight>Support</HighLight>
-            </h2>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarCollapse" />
-          <Navbar.Collapse id="navbarCollapse">
-            <Nav className="ms-auto">
-              <Nav.Link href="/home">Home</Nav.Link>
-              <Nav.Link href="/home#about">About</Nav.Link>
-              <Nav.Link href="/home#services">Services</Nav.Link>
-              <Dropdown>
-                <Dropdown.Toggle as={Nav.Link} id="dropdown-actions">
-                  Actions
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="/invest">Invest</Dropdown.Item>
-                  <Dropdown.Item href="/withdraw">Withdraw</Dropdown.Item>
-                  <Dropdown.Item onClick={()=>{logOut(navigate)}}>
-                    Logout
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <Nav.Link href="/home#contact">Contact</Nav.Link>
-            </Nav>
-            <Nav className="d-none d-lg-flex ms-3">
-              <Nav.Link
-                href=""
-                className="btn btn-light btn-sm-square rounded-circle"
-              >
-                <i className="fab fa-facebook-f text-primary"></i>
-              </Nav.Link>
-              <Nav.Link
-                href=""
-                className="btn btn-light btn-sm-square rounded-circle ms-2"
-              >
-                <i className="fab fa-twitter text-primary"></i>
-              </Nav.Link>
-              <Nav.Link
-                href=""
-                className="btn btn-light btn-sm-square rounded-circle ms-2"
-              >
-                <i className="fab fa-linkedin-in text-primary"></i>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      {/* Navbar End */}
-
+     <Header/>
       <hr
         style={{
           backgroundColor: "rgba(0, 0, 0, 0.4)",

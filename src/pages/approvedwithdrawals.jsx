@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { selectAppStats } from "../state/slices/appSlice";
 const ApprovedWithdrawals = () => {
   const {allWithdrawals}= useSelector(selectAppStats)
-  const approvedWithdrawals= allWithdrawals.filter(x=>x.status==="approved")
+  const approvedWithdrawals= allWithdrawals.filter(x=>x.userId).filter(x=>x.status==="approved")
   return (
     <div className="container-fluid">
       {/* Top Bar */}

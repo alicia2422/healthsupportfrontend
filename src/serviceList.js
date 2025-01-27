@@ -1,11 +1,14 @@
-const serviceList = [
-  {
-    title: `Medical Support`,
-    href: "/medicalsupport",
+
+const getServiceList=(isLogged)=>{
+
+return   [
+    {
+      title: `Medical Support`,
+    href: isLogged?"/dashboard/medicalsupport":"/medicalsupport",
   },
   {
     title: " COVID 19 Benefits",
-    href: "/COVID19Benefits",
+    href: isLogged? "/dashboard/covid":"/COVID19Benefits",
   },
 
   {
@@ -20,7 +23,7 @@ const serviceList = [
       "truck",
       "crude oil",
     ],
-    href: "#investments",
+    href: isLogged?"/invest":"/register",
   },
 
   {
@@ -30,25 +33,26 @@ const serviceList = [
 
   {
     title: "Health Insurance",
-    href: "/healthinsurance",
+    href: isLogged?"/dashboard/insurance":"/healthinsurance",
   },
-
+  
   {
     title: "Cash contribution",
-    href: "/cashcontribution",
+    href: isLogged?"/dashboard/contribution":"/cashcontribution",
   },
   {
     title: "travel & expense",
-    href: "/travelandexpense",
+    href:isLogged? "/dashboard/trips":"/travelandexpense",
   },
-
+  
   "Agricultural investment",
-
+  
   "Automobile  multinvestment",
-
+  
   "Travel and expense (T&E)    management/business travel allowance or business travel compensation provider.(Reimbursed expenses,Flat travel allowance etc.)",
 ];
 
 // Everyone must register with id
+}
 
-export default serviceList;
+export default getServiceList;

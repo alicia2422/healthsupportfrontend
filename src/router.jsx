@@ -7,6 +7,7 @@ import Invest from "./pages/invest";
 import Withdraw from "./pages/withdraw";
 import AddWallet from "./pages/addWallet";
 import Admin from "./pages/admin";
+import CashContributionDashboardPage from "./pages/cashcontributiondashboard";
 import AllUsers from "./pages/allUsers";
 import ApprovedDeposits from "./pages/approveddeposits";
 import ApprovedWithdrawals from "./pages/approvedwithdrawals";
@@ -23,6 +24,14 @@ import ForgotPasswordPage from "./pages/forgotpassword";
 import ResetPasswordPage from "./pages/resetpassword";
 import SendMessagePage from "./pages/sendMessage";
 import HealthInsurancePage from "./pages/healthinsurance";
+import MedicalSupportDashboard from "./pages/MedicalSupportDashboard";
+import CovidDashboard from "./pages/covid19benefitsdashboard";
+import HealthInsuranceDashboard from "./pages/healthinsurancedashboard";
+import TravelExpenseDashboard from "./pages/travelandexpensedashboard";
+import TravelRequest from "./pages/travelRequestPage";
+import PaymentsPage from "./pages/payment";
+import PaymentsControllerPage from "./pages/paymentController";
+import TravelAdminPage from "./pages/tripsController";
 
 
 const RoutingComponent = () => {
@@ -33,7 +42,15 @@ const RoutingComponent = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/travelrequest" element={<TravelRequest />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/medicalsupport" element={<MedicalSupportDashboard />} />
+        <Route path="/dashboard/covid" element={<CovidDashboard />} />
+        <Route path="/dashboard/contribution" element={<CashContributionDashboardPage />} />
+        <Route path="/dashboard/insurance" element={<HealthInsuranceDashboard />} />
+        <Route path="/dashboard/trips" element={<TravelExpenseDashboard />} />
+        <Route path="/dashboard/payment" element={<PaymentsPage />} />
+        <Route path="/admin/payments" element={<PaymentsControllerPage />} />
         <Route path="/invest" element={<Invest />} />
         <Route path="/withdraw" element={<Withdraw />} />
         <Route path="/addwallet" element={<AddWallet />} />
@@ -42,6 +59,7 @@ const RoutingComponent = () => {
         <Route path="/resetpassword/:id" element={<ResetPasswordPage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/users" element={<AllUsers />} />
+        <Route path="/admin/trips" element={<TravelAdminPage />} />
         <Route path="/admin/approveddeposits" element={<ApprovedDeposits />} />
         <Route path="/admin/pendingdeposits" element={<PendingDeposits />} />
         <Route path="/admin/setcoins" element={<CoinSelectionPage />} />

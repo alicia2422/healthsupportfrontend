@@ -12,12 +12,13 @@ import {selectAppStats} from "../state/slices/appSlice"
 import fetchData from "../fetchData"
 import  {developmentApiEntryPoint} from "./register"
 import { useNavigate } from "react-router-dom";
+import Header from "../components/header";
 const token= localStorage.getItem("support_token")
 export const EmptyTable= ()=><p className="text-center">Nothing to display</p>
 const PendingDeposits = () => {
   const appStats=useSelector(selectAppStats)
   const navigate=useNavigate()
-  const pendingInvestments= appStats.allInvestments.filter(x=>x.status==="pending")
+  const pendingInvestments= appStats.filter(x=>x.userId).allInvestments.filter(x=>x.status==="pending")
   const approveInvestment=(id,name,amount)=>{
     const canProceed=window.confirm(`Are you sure you want to approve the deposit of ${amount} by ${name}`)
   if(canProceed){
@@ -79,55 +80,7 @@ const PendingDeposits = () => {
         </div>
 
         {/* Navbar */}
-        <Navbar expand="lg" className="py-lg-0 px-lg-5">
-          <Navbar.Brand href="/home">
-            <h3 style={{ color: "rgb(0,0,0,0.5)" }} className="display-5 m-0">
-              Health<HighLight>Support</HighLight>
-            </h3>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarCollapse" />
-          <Navbar.Collapse id="navbarCollapse">
-            <Nav className="ms-auto">
-              <Nav.Link href="/home" className="active">
-                Home
-              </Nav.Link>
-              <Nav.Link href="/home#about">About</Nav.Link>
-              <Nav.Link href="/home#services">Services</Nav.Link>
-              <NavDropdown title="Actions" id="actions-dropdown">
-                <NavDropdown.Item href="/invest">Invest</NavDropdown.Item>
-                <NavDropdown.Item href="/withdraw">Withdraw</NavDropdown.Item>
-                <Button
-                  variant="primary"
-                  className="dropdown-item text-white"
-                  onClick={()=>{localStorage.removeItem("support_backend");navigate("/")}}
-                >
-                  Logout
-                </Button>
-              </NavDropdown>
-              <Nav.Link href="/home#contact">Contact</Nav.Link>
-            </Nav>
-            <div className="d-none d-lg-flex ms-2">
-              <Button
-                variant="light"
-                className="btn-sm-square rounded-circle ms-3"
-              >
-                <small className="fab fa-facebook-f text-primary"></small>
-              </Button>
-              <Button
-                variant="light"
-                className="btn-sm-square rounded-circle ms-3"
-              >
-                <small className="fab fa-twitter text-primary"></small>
-              </Button>
-              <Button
-                variant="light"
-                className="btn-sm-square rounded-circle ms-3"
-              >
-                <small className="fab fa-linkedin-in text-primary"></small>
-              </Button>
-            </div>
-          </Navbar.Collapse>
-        </Navbar>
+       <Header/>
         <hr
           style={{
             backgroundColor: "rgba(0,0,0,0.4)",

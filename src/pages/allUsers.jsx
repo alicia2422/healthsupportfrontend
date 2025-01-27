@@ -14,6 +14,8 @@ import { developmentApiEntryPoint } from "./register";
 import { CiTrash,CiMail } from "react-icons/ci";
 import { IoPersonRemove, IoPersonAdd } from "react-icons/io5";
 import styled from "styled-components";
+import { FaWhatsappSquare } from "react-icons/fa";
+import Header from "../components/header";
 const StyledButton=styled(Button)`
 margin-left:4px;
 `
@@ -122,83 +124,7 @@ const AllUsers = () => {
   return (
     <div className="container-fluid">
       {/* Top Bar */}
-      <div className="container-fluid  px-0">
-        <div className="top-bar row gx-0 align-items-center d-none d-lg-flex">
-          <div className="col-lg-6 px-5 text-start">
-            <small>
-              <i className="fa fa-map-marker-alt text-primary me-2"></i>123
-              Street, New York, USA
-            </small>
-            <small className="ms-4">
-              <i className="fa fa-clock text-primary me-2"></i>9.00 am - 9.00 pm
-            </small>
-          </div>
-          <div className="col-lg-6 px-5 text-end">
-            <small>
-              <i className="fa fa-envelope text-primary me-2"></i>
-              medicalhealthassets@gmail.com
-            </small>
-          </div>
-        </div>
-
-        {/* Navbar */}
-        <Navbar expand="lg" className="py-lg-0 px-lg-5">
-          <Navbar.Brand href="/home">
-            <h3 style={{ color: "rgb(0,0,0,0.5)" }} className="display-5 m-0">
-              Health<HighLight>Support</HighLight>
-            </h3>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarCollapse" />
-          <Navbar.Collapse id="navbarCollapse">
-            <Nav className="ms-auto">
-              <Nav.Link href="/home" className="active">
-                Home
-              </Nav.Link>
-              <Nav.Link href="/home#about">About</Nav.Link>
-              <Nav.Link href="/home#services">Services</Nav.Link>
-              <NavDropdown title="Actions" id="actions-dropdown">
-                <NavDropdown.Item href="/invest">Invest</NavDropdown.Item>
-                <NavDropdown.Item href="/withdraw">Withdraw</NavDropdown.Item>
-                <Button
-                  variant="primary"
-                  className="dropdown-item text-white"
-                  onClick={() => console.log("Logout")}
-                >
-                  Logout
-                </Button>
-              </NavDropdown>
-              <Nav.Link href="/home#contact">Contact</Nav.Link>
-            </Nav>
-            <div className="d-none d-lg-flex ms-2">
-              <Button
-                variant="light"
-                className="btn-sm-square rounded-circle ms-3"
-              >
-                <small className="fab fa-facebook-f text-primary"></small>
-              </Button>
-              <Button
-                variant="light"
-                className="btn-sm-square rounded-circle ms-3"
-              >
-                <small className="fab fa-twitter text-primary"></small>
-              </Button>
-              <Button
-                variant="light"
-                className="btn-sm-square rounded-circle ms-3"
-              >
-                <small className="fab fa-linkedin-in text-primary"></small>
-              </Button>
-            </div>
-          </Navbar.Collapse>
-        </Navbar>
-        <hr
-          style={{
-            backgroundColor: "rgba(0,0,0,0.4)",
-            position: "relative",
-            top: "10px",
-          }}
-        />
-      </div>
+     <Header/>
 
       {/* Quick Links */}
 
@@ -221,6 +147,7 @@ const AllUsers = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Phone</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -235,6 +162,13 @@ const AllUsers = () => {
                   <td>{user.email}</td>
                   <td>{user.isAdmin?"Admin":"client"}</td>
                   <td style={{textTransform:"capitalize"}} className={userIsApproved?"text-success":"text-danger"}>{user.status}</td>
+                  <td style={{position:"relative"}}>{user.phone}
+                  <a target="_blank" href={`https://api.whatsapp.com/send/?phone=${user.phone}&text&type=phone_number&app_absent=0`}>
+
+                      <FaWhatsappSquare style={{fontSize:"25px",position:"absolute",right:"0px",cursor:"pointer"}}/>
+                  </a>
+                    
+                  </td>
                   <td>
                     {!userIsApproved&&<StyledButton onClick={()=>{approveUser(user.name,user._id)}}>✔</StyledButton>}
                   <StyledButton variant="outline-success" disabled={loading} onClick={()=>{promoteUser(user._id ,user.name,user.isAdmin)}} size="sm"><IoPersonAdd/>{loading&&<ButtonSpinner/>}</StyledButton>

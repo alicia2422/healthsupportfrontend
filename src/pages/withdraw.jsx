@@ -25,6 +25,7 @@ import { selectUserDetails } from "../state/slices/userSlice";
 import fetchData from "../fetchData";
 import { developmentApiEntryPoint } from "./register";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/header";
 export const coins = [
   { name: "ethereum", id: "ethereum", image: eth },
   { name: "bitcoin", id: "bitcoin", image: btc },
@@ -87,59 +88,7 @@ const App = () => {
   return (
     <>
       {/* Navbar Start */}
-      <Navbar bg="light" expand="lg" fixed="top" className="py-3">
-        <Container>
-          <Navbar.Brand href="/" className="d-flex align-items-center">
-            <h1 className="m-0">
-              Health<HighLight>Support</HighLight>
-            </h1>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-nav" />
-          <Navbar.Collapse id="navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/home#about">About</Nav.Link>
-              <Nav.Link href="/home#services">Services</Nav.Link>
-              <NavDropdown title="Actions" id="actions-dropdown">
-                <NavDropdown.Item href="/invest">Invest</NavDropdown.Item>
-                <NavDropdown.Item href="/withdraw">
-                  Withdraw
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/dashboard">
-                  Dashboard
-                </NavDropdown.Item>
-                <Button
-                  className="dropdown-item text-white bg-primary"
-                  onClick={() => logout()}
-                >
-                  Logout
-                </Button>
-              </NavDropdown>
-              <Nav.Link href="/home#contact">Contact</Nav.Link>
-            </Nav>
-            <div className="d-none d-lg-flex ms-2">
-              <a
-                className="btn btn-light btn-sm-square rounded-circle ms-3"
-                href=""
-              >
-                <i className="fab fa-facebook-f text-primary"></i>
-              </a>
-              <a
-                className="btn btn-light btn-sm-square rounded-circle ms-3"
-                href=""
-              >
-                <i className="fab fa-twitter text-primary"></i>
-              </a>
-              <a
-                className="btn btn-light btn-sm-square rounded-circle ms-3"
-                href=""
-              >
-                <i className="fab fa-linkedin-in text-primary"></i>
-              </a>
-            </div>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+     <Header/>
       {/* Navbar End */}
 
       {/* Page Header Start */}

@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-const initialState={allUsers:[], allInvestments:[], allWithdrawals:[]}
+const initialState={allUsers:[], allInvestments:[], allWithdrawals:[], allPayments:[]}
 
 const appSlice=createSlice({
     name:"app",

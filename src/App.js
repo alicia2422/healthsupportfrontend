@@ -54,7 +54,7 @@ const App = () => {
         },
         (message) => {
           alert(message);
-          navigate("/");
+          navigate("/home");
         },
         "POST",
         {},

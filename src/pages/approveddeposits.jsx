@@ -13,7 +13,7 @@ const ApprovedDeposits = () => {
   const appStats= useSelector(selectAppStats)
   console.log(appStats.allInvestments)
   
-   const approvedDeposits= appStats.allInvestments.filter(x=>(x.status==="approved")||(x.status==="active"))
+   const approvedDeposits= appStats.allInvestments.filter(x=>x.userId).filter(x=>(x.status==="approved")||(x.status==="active"))
    
   return (
     <div className="container-fluid">

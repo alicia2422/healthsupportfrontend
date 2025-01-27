@@ -12,6 +12,8 @@ import Plans from "../components/plans";
 import observeClass, { animatedClasses } from "../aos";
 import fetchData from "../fetchData";
 import { developmentApiEntryPoint } from "./register";
+import certificate from "../assets/Jonathan Crimson.png"
+import {Image} from  "react-bootstrap"
 
 const Container = styled.div`
   width: 100vw;
@@ -138,6 +140,7 @@ const Home = () => {
       <HealthCenter />
       <Plans />
       <DoctorsCarousel />
+      <Image src={certificate} style={{width:"80%", display:"block", margin:"20px auto"}} fluid />
       <Partners />
       <Testimonials />
       <iframe

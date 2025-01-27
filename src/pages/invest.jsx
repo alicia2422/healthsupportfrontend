@@ -24,6 +24,7 @@ import ErrorModal from "../components/errorsModal";
 import { developmentApiEntryPoint } from "./register";
 import { useNavigate } from "react-router-dom";
 import ButtonSpinner from "../components/buttonspinner";
+import Header from "../components/header";
 const coins = [usdt, eth, btc, doge];
 const CoinsCon = styled.div`
   width: 80vw;
@@ -191,57 +192,14 @@ const PlansAndCoins = () => {
       id: "ethereumadd",
       img: eth,
       name: "ethereum",
-      address: fetchedCoins.bitcoin||"loading ...",
+      address: fetchedCoins.ethereum||"loading ...",
     },
   ]
 
   return (
     <div>
       {/* Navbar Start */}
-      <div className="bg-white fixed-top">
-        <div className="d-none d-lg-flex justify-content-between align-items-center px-5 py-2">
-          <small>
-            <i className="fa fa-map-marker-alt text-primary me-2" />
-            123 Street, New York, USA
-          </small>
-          <small>
-            <i className="fa fa-clock text-primary me-2" />
-            9.00 am - 9.00 pm
-          </small>
-          <small>
-            <i className="fa fa-envelope text-primary me-2" />
-            info@Healthsupport.com
-          </small>
-        </div>
-        <Navbar expand="lg" className="px-5">
-          <Navbar.Brand href="/home">
-            <h2 className="d-inline ">
-              Health<HighLight>Support</HighLight>
-            </h2>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-collapse" />
-          <Navbar.Collapse id="navbar-collapse">
-            <Nav className="ms-auto">
-              <Nav.Link href="/home">Home</Nav.Link>
-              <Nav.Link href="/home#about">About</Nav.Link>
-              <Nav.Link href="/home#services">Services</Nav.Link>
-              <NavDropdown title="Actions">
-                <NavDropdown.Item href="/invest">Invest</NavDropdown.Item>
-                <NavDropdown.Item href="/withdraw">Withdraw</NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Button
-                    variant="primary"
-                    onClick={() => console.log("Logout")}
-                  >
-                    Logout
-                  </Button>
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="/home#contact">Contact</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      </div>
+      <Header/>
       <ErrorModal errors={inputErrors}/>
       {/* Navbar End */}
 
