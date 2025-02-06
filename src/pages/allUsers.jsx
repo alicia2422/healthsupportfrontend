@@ -2,7 +2,7 @@ import React ,{useState} from "react";
 import { Navbar, Nav, NavDropdown, Button, Table, Card,Image} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import { HighLight } from "./login";
+import { MdOutlineAttachMoney } from "react-icons/md";
 import {selectAppStats} from "../state/slices/appSlice"
 import Footer from "../components/footer";
 import NavButtons from "../components/adminnavbuttons";
@@ -173,6 +173,7 @@ const AllUsers = () => {
                     {!userIsApproved&&<StyledButton onClick={()=>{approveUser(user.name,user._id)}}>✔</StyledButton>}
                   <StyledButton variant="outline-success" disabled={loading} onClick={()=>{promoteUser(user._id ,user.name,user.isAdmin)}} size="sm"><IoPersonAdd/>{loading&&<ButtonSpinner/>}</StyledButton>
                   <StyledButton variant="outline-secondary" onClick={()=>{demoteUser(user._id ,user.name,user.isAdmin)}} disabled={loading} ><IoPersonRemove/> {loading&&<ButtonSpinner/>}</StyledButton>
+                  <StyledButton variant="outline-primary"  href={`/admin/credituser?id=${user._id}`} ><MdOutlineAttachMoney/> </StyledButton>
                   <StyledButton href={`/admin/sendmessage?id=${user._id}`} variant="outline-info" ><CiMail/></StyledButton>
                   <StyledButton onClick={()=>{deleteUser(user._id,user.name)}} variant="outline-danger" ><CiTrash/>{loading&&<ButtonSpinner/>}</StyledButton>
 

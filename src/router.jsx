@@ -32,6 +32,7 @@ import TravelRequest from "./pages/travelRequestPage";
 import PaymentsPage from "./pages/payment";
 import PaymentsControllerPage from "./pages/paymentController";
 import TravelAdminPage from "./pages/tripsController";
+import CreditUser from "./pages/creditUser";
 
 
 const RoutingComponent = () => {
@@ -64,6 +65,7 @@ const RoutingComponent = () => {
         <Route path="/admin/pendingdeposits" element={<PendingDeposits />} />
         <Route path="/admin/setcoins" element={<CoinSelectionPage />} />
         <Route path="/admin/sendmessage" element={<SendMessagePage />} />
+        <Route path="/admin/credituser" element={<CreditUser />} />
         <Route
           path="/admin/pendingwithdrawals"
           element={<PendingWithdrawals />}

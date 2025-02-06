@@ -17,8 +17,9 @@ const token= localStorage.getItem("support_token")
 export const EmptyTable= ()=><p className="text-center">Nothing to display</p>
 const PendingDeposits = () => {
   const appStats=useSelector(selectAppStats)
+  console.log(appStats)
   const navigate=useNavigate()
-  const pendingInvestments= appStats.filter(x=>x.userId).allInvestments.filter(x=>x.status==="pending")
+  const pendingInvestments= appStats.allInvestments.filter(x=>x.status==="pending")
   const approveInvestment=(id,name,amount)=>{
     const canProceed=window.confirm(`Are you sure you want to approve the deposit of ${amount} by ${name}`)
   if(canProceed){
